@@ -6,19 +6,17 @@
 //
 
 import UIKit
-import Kingfisher
 
-class FavoriteMovieViewController: UICollectionViewCell {
+class FavoriteMovieCollectionViewCell: UICollectionViewCell {
     
     //MARK: - UI Components
     
     private lazy var moviePosterImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.layer.cornerRadius = 12.0
         imageView.contentMode = .scaleAspectFill
-        imageView.layer.cornerRadius = 12
         imageView.layer.masksToBounds = true
-        
         return imageView
     }()
     
@@ -26,9 +24,9 @@ class FavoriteMovieViewController: UICollectionViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: 14, weight: .semibold)
-        label.textColor = .black
+        label.textColor = .white
         label.textAlignment = .center
-        label.numberOfLines = 0
+        label.numberOfLines = 1
         
         return label
     }()
@@ -48,7 +46,6 @@ class FavoriteMovieViewController: UICollectionViewCell {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .lightGray
         setupConstraints()
     }
     
