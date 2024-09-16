@@ -34,6 +34,11 @@ class FavoriteMoviesViewController: UIViewController {
         setupConstraints()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        collectionView.reloadData()
+    }
+    
     //MARK: - Class methods
     
     private func setupConstraints() {
@@ -50,7 +55,7 @@ class FavoriteMoviesViewController: UIViewController {
 extension FavoriteMoviesViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return movies.count
+        return MovieManager.shared.favoritesMovie.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -58,8 +63,9 @@ extension FavoriteMoviesViewController: UICollectionViewDataSource {
             fatalError("error to create FavoriteMovieCollectionViewCell")
         }
         
-        let currentMovie = movies[indexPath.item]
+        let currentMovie = MovieManager.shared.favoritesMovie[indexPath.item]
         cell.setupView(currentMovie)
+        cell.delegate = self
         
         return cell
     }
@@ -88,6 +94,25 @@ extension FavoriteMoviesViewController: UICollectionViewDelegateFlowLayout, UICo
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         return CGSize(width: collectionView.bounds.width, height: 50)
      }
+}
+
+extension FavoriteMoviesViewController: FavoriteMovieCollectionViewCellDelegate {
+    func didSelectedFavoriteButton(_ sender: UIButton) {
+        
+        guard let cell = sender.superview as? FavoriteMovieCollectionViewCell else {
+            return
+        }
+        
+        guard let indexPath = collectionView.indexPath(for: cell) else {
+            return
+        }
+        
+        let selectedMovie = MovieManager.shared.favoritesMovie[indexPath.item]
+        selectedMovie.changeSelectedStatus()
+        
+        MovieManager.shared.remove(selectedMovie)
+        collectionView.reloadData()
+    }
 }
 
 
