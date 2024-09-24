@@ -12,16 +12,8 @@ class MovieDetailsViewController: UIViewController {
     
     var movie: Movie
     
-    private lazy var titleLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = movie.title
-        label.font = .systemFont(ofSize: 24, weight: .semibold)
-        label.textColor = .white
-        label.textAlignment = .center
-        return label
-    }()
-    
+    private lazy var titleLabel = LabelDefault(text: movie.title,fontSize: 24, fontWeight: .semibold, textAligment: .center)
+
     private lazy var posterImageView: UIImageView = {
         let imgView = UIImageView()
         imgView.translatesAutoresizingMaskIntoConstraints = false
@@ -33,29 +25,10 @@ class MovieDetailsViewController: UIViewController {
         return imgView
     }()
     
-    private lazy var rateUser: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Classificação do usuário: \(movie.rate)"
-        label.font = .systemFont(ofSize: 22, weight: .semibold)
-        label.textColor = .white
-        label.textAlignment = .center
-        
-        return label
-    }()
+    private lazy var rateUser = LabelDefault(text: "Classificação do usuário: \(movie.rate)", fontSize: 22, fontWeight: .semibold, textAligment: .center)
 
-    private lazy var sinopseMovie: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = movie.synopsis
-        label.textColor = .white
-        label.font = .systemFont(ofSize: 16)
-        label.textAlignment = .center
-        label.numberOfLines = 0
-        
-        return label
-    }()
-    
+    private lazy var sinopseMovie = LabelDefault(text: movie.synopsis, fontSize: 16, textAligment: .center)
+
     init(movie: Movie) {
         self.movie = movie
         super.init(nibName: nil, bundle: nil)

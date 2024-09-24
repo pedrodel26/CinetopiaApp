@@ -25,18 +25,8 @@ class HomeViewController: UIViewController {
         return imageView
     }()
     
-    private lazy var welcomeLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "O lugar ideal para buscar, salvar e organizar seus filmes favoritos!"
-        label.textColor = .white
-        label.numberOfLines = 0
-        label.textAlignment = .center
-        label.font = .systemFont(ofSize: 20, weight: .semibold)
-        
-        return label
-    }()
-    
+    private lazy var welcomeLabel = LabelDefault(text: "O lugar ideal para buscar, salvar e organizar seus filmes favoritos!", fontSize: 20, fontWeight: .semibold, textAligment: .center)
+
     private lazy var welcomeButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false

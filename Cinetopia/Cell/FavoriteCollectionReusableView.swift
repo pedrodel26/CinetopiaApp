@@ -11,15 +11,7 @@ class FavoriteCollectionReusableView: UICollectionReusableView {
 
     //MARK: - UI Components
     
-    private lazy var headerLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .systemFont(ofSize: 28, weight: .medium)
-        label.textColor = .white
-        label.textAlignment = .left
-        
-        return label
-    }()
+    private lazy var headerLabel = LabelDefault(fontSize: 28, fontWeight: .medium, textAligment: .left)
     
     //MARK: - INIT
     
