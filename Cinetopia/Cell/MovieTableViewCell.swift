@@ -24,25 +24,10 @@ class MovieTableViewCell: UITableViewCell {
         return imageView
     }()
     
-    private lazy var movieTitleLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .systemFont(ofSize: 20, weight: .semibold)
-        label.textColor = .white
-        label.numberOfLines = 0
-        
-        return label
-    }()
+    private lazy var movieTitleLabel = LabelDefault(fontSize: 20, fontWeight: .semibold)
     
-    private lazy var movieReleaseDateMovie: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .systemFont(ofSize: 16)
-        label.textColor = .white
-        
-        return label
-    }()
-    
+    private lazy var movieReleaseDateMovie = LabelDefault(fontSize: 16)
+
     private lazy var favoriteButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false

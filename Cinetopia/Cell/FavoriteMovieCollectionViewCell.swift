@@ -24,17 +24,9 @@ class FavoriteMovieCollectionViewCell: UICollectionViewCell {
         return imageView
     }()
     
-    private lazy var movieTitleLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .systemFont(ofSize: 14, weight: .semibold)
-        label.textColor = .white
-        label.textAlignment = .center
-        label.numberOfLines = 1
-        
-        return label
-    }()
     
+    private lazy var movieTitleLabel = LabelDefault(fontSize: 14, fontWeight: .semibold, numberOfLines: 1, textAligment: .center)
+
     private lazy var favoriteButton: UIButton = {
        let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
